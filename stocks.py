@@ -29,7 +29,7 @@ sector = df.groupby('GICS Sector')
 # Sidebar - Sector selection
 sorted_sector_unique = sorted(df['GICS Sector'].unique())
 sorted_symbol = sorted(df['Symbol'])
-selected_sector = st.sidebar.multiselect('Sector', sorted_sector_unique)
+selected_sector = st.sidebar.multiselect('Sector',sorted_sector_unique,sorted_sector_unique)
 start_date = st.sidebar.text_input("Start Date", "2015-04-01")
 end_date = st.sidebar.text_input("End Date", "2020-10-01")
 stock_symbol = st.sidebar.multiselect("Stock Symbol", sorted_symbol)
