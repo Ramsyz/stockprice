@@ -27,9 +27,12 @@ df = load_data()
 sector = df.groupby('GICS Sector')
 
 # Sidebar - Sector selection
-sorted_sector_unique = sorted( df['GICS Sector'].unique() )
-selected_sector = st.sidebar.multiselect('Sector', sorted_sector_unique, sorted_sector_unique)
-
+sorted_sector_unique = sorted(df['GICS Sector'].unique())
+sorted_symbol = sorted(df['Symbol'])
+selected_sector = st.sidebar.multiselect('Sector', sorted_sector_unique)
+start_date = st.sidebar.text_input("Start Date", "2015-04-01")
+end_date = st.sidebar.text_input("End Date", "2020-10-01")
+stock_symbol = st.sidebar.multiselect("Stock Symbol", sorted_symbol)
 # Filtering data
 df_selected_sector = df[ (df['GICS Sector'].isin(selected_sector)) ]
 
@@ -70,6 +73,9 @@ def price_plot(symbol):
   plt.title(symbol, fontweight='bold')
   plt.xlabel('Date', fontweight='bold')
   plt.ylabel('Closing Price', fontweight='bold')
+  st.set_option('deprecation.showPyplotGlobalUse', False)
+  st.set_option('deprecation.showPyplotGlobalUse', False)
+
   return st.pyplot()
 
 num_company = st.sidebar.slider('Number of Companies', 1, 5)
